@@ -123,6 +123,13 @@ python run.py predict --index 10
 
 # Evaluate models
 python run.py evaluate
+
+# Tune hyperparameters (optimize model performance)
+python run.py tune --quick              # Quick tuning
+python run.py tune                      # Full tuning
+
+# Analyze feature importance
+python run.py features
 ```
 
 #### Available Models:
@@ -130,6 +137,23 @@ python run.py evaluate
 1. **KNN Recommender** - Finds properties most similar to the subject using K-Nearest Neighbors
 2. **Clustering Recommender** - Groups properties into clusters and recommends from the same cluster
 3. **Hybrid Recommender** - Combines KNN and clustering approaches for better results
+
+### Model Optimization
+
+Optimize model performance through hyperparameter tuning and feature analysis:
+
+```bash
+# Analyze which features are most important
+python run.py features
+
+# Quick hyperparameter tuning (faster)
+python run.py tune --quick
+
+# Full hyperparameter tuning (comprehensive)
+python run.py tune
+```
+
+See [OPTIMIZATION_GUIDE.md](OPTIMIZATION_GUIDE.md) for detailed optimization instructions.
 
 ## Current Status
 
@@ -146,9 +170,11 @@ python run.py evaluate
   - Hybrid recommendation system
   - Comprehensive evaluation framework (MAP, NDCG, Precision@K, Recall@K)
   - Model training and persistence
-
-**In Progress:**
-- Model performance optimization and hyperparameter tuning
+- ✅ **Model Optimization** ⭐
+  - Hyperparameter tuning with cross-validation
+  - Feature importance analysis
+  - Grid search for optimal parameters
+  - Automated model selection
 
 **To Do (Milestones):**
 1. ~~**Statistical Modeling**~~ ✅ **COMPLETED**

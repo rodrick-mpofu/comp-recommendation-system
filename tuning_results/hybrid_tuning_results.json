@@ -1,0 +1,37 @@
+{
+  "best_knn_weight": 0.4,
+  "best_cluster_weight": 0.6,
+  "best_score": 0.25,
+  "all_results": [
+    {
+      "knn_weight": 0.4,
+      "cluster_weight": 0.6,
+      "mean_MAP": 0.25,
+      "std_MAP": 0.25,
+      "fold_scores": [
+        0.0,
+        0.5
+      ]
+    },
+    {
+      "knn_weight": 0.5,
+      "cluster_weight": 0.5,
+      "mean_MAP": 0.25,
+      "std_MAP": 0.25,
+      "fold_scores": [
+        0.0,
+        0.5
+      ]
+    },
+    {
+      "knn_weight": 0.6,
+      "cluster_weight": 0.4,
+      "mean_MAP": 0.25,
+      "std_MAP": 0.25,
+      "fold_scores": [
+        0.0,
+        0.5
+      ]
+    }
+  ]
+}

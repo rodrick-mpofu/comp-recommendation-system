@@ -1,0 +1,62 @@
+{
+  "best_params": {
+    "n_neighbors": 10,
+    "metric": "euclidean",
+    "n_recommendations": 5
+  },
+  "best_score": 0.0,
+  "all_results": [
+    {
+      "params": {
+        "n_neighbors": 10,
+        "metric": "euclidean",
+        "n_recommendations": 5
+      },
+      "mean_MAP": 0.0,
+      "std_MAP": 0.0,
+      "fold_scores": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "params": {
+        "n_neighbors": 10,
+        "metric": "manhattan",
+        "n_recommendations": 5
+      },
+      "mean_MAP": 0.0,
+      "std_MAP": 0.0,
+      "fold_scores": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "params": {
+        "n_neighbors": 15,
+        "metric": "euclidean",
+        "n_recommendations": 5
+      },
+      "mean_MAP": 0.0,
+      "std_MAP": 0.0,
+      "fold_scores": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "params": {
+        "n_neighbors": 15,
+        "metric": "manhattan",
+        "n_recommendations": 5
+      },
+      "mean_MAP": 0.0,
+      "std_MAP": 0.0,
+      "fold_scores": [
+        0.0,
+        0.0
+      ]
+    }
+  ]
+}

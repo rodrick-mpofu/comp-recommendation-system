@@ -97,23 +97,50 @@ def evaluate_models():
     train_and_evaluate_models(df, test_split=0.3)
 
 
+def tune_hyperparameters(quick=False):
+    """Tune model hyperparameters."""
+    from models.tune_models import tune_all_models
+
+    print("Starting hyperparameter tuning...")
+    if quick:
+        print("Using quick mode (smaller parameter grids)")
+    else:
+        print("Using full mode (this may take several minutes)")
+
+    tune_all_models(
+        data_path='data/appraisals_dataset.json',
+        n_folds=5,
+        quick=quick,
+        output_dir='tuning_results'
+    )
+
+
+def analyze_features():
+    """Analyze feature importance."""
+    from models.feature_analysis import main as feature_main
+    feature_main()
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="Comp Recommendation System - Main Entry Point",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  python run.py clean                    # Clean the dataset
-  python run.py train                    # Train all models
-  python run.py predict                  # Make predictions (default: hybrid model)
-  python run.py predict --model knn      # Use KNN model
-  python run.py predict --index 5        # Predict for appraisal #5
-  python run.py evaluate                 # Evaluate all models
+  python run.py clean                     # Clean the dataset
+  python run.py train                     # Train all models
+  python run.py predict                   # Make predictions (default: hybrid model)
+  python run.py predict --model knn       # Use KNN model
+  python run.py predict --index 5         # Predict for appraisal #5
+  python run.py evaluate                  # Evaluate all models
+  python run.py tune                      # Tune hyperparameters (full)
+  python run.py tune --quick              # Quick hyperparameter tuning
+  python run.py features                  # Analyze feature importance
         """
     )
     parser.add_argument(
         'command',
-        choices=['clean', 'train', 'predict', 'evaluate'],
+        choices=['clean', 'train', 'predict', 'evaluate', 'tune', 'features'],
         help='Command to execute'
     )
     parser.add_argument(
@@ -135,6 +162,11 @@ Examples:
         default=0,
         help='Appraisal index for prediction (default: 0)'
     )
+    parser.add_argument(
+        '--quick',
+        action='store_true',
+        help='Use quick mode for hyperparameter tuning'
+    )
 
     args = parser.parse_args()
 
@@ -153,6 +185,12 @@ Examples:
 
     elif args.command == 'evaluate':
         evaluate_models()
+
+    elif args.command == 'tune':
+        tune_hyperparameters(quick=args.quick)
+
+    elif args.command == 'features':
+        analyze_features()
 
 
 if __name__ == '__main__':

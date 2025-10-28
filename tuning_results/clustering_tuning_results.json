@@ -1,0 +1,33 @@
+{
+  "best_params": {
+    "n_clusters": 10,
+    "n_recommendations": 5
+  },
+  "best_score": 0.25,
+  "all_results": [
+    {
+      "params": {
+        "n_clusters": 8,
+        "n_recommendations": 5
+      },
+      "mean_MAP": 0.0,
+      "std_MAP": 0.0,
+      "fold_scores": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "params": {
+        "n_clusters": 10,
+        "n_recommendations": 5
+      },
+      "mean_MAP": 0.25,
+      "std_MAP": 0.25,
+      "fold_scores": [
+        0.0,
+        0.5
+      ]
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+Model,Best Params,Best MAP
+KNN,"{'n_neighbors': 10, 'metric': 'euclidean', 'n_recommendations': 5}",0.0
+Clustering,"{'n_clusters': 10, 'n_recommendations': 5}",0.25
+Hybrid,"KNN=0.40, Cluster=0.60",0.25
