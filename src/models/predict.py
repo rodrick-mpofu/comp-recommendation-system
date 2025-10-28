@@ -110,7 +110,8 @@ def predict_for_appraisal(
     subject_property: Dict,
     available_properties: List[Dict],
     n_recommendations: int = 5,
-    verbose: bool = True
+    verbose: bool = True,
+    explain: bool = False
 ) -> List[Tuple[Dict, float]]:
     """
     End-to-end prediction for an appraisal.
@@ -121,6 +122,7 @@ def predict_for_appraisal(
         available_properties: Available properties list
         n_recommendations: Number of recommendations to return
         verbose: Print recommendations
+        explain: Include explanations for recommendations
 
     Returns:
         List of (property, score) tuples
@@ -152,6 +154,16 @@ def predict_for_appraisal(
 
         for rank, (prop, score) in enumerate(recommendations, 1):
             print(format_recommendation(prop, score, rank))
+
+            # Add explanation if requested
+            if explain:
+                from models.explainer import CompExplainer
+                explainer = CompExplainer()
+                explanation = explainer.explain_recommendation(
+                    subject_property, prop, score, rank
+                )
+                print("\n" + explanation)
+                print("-" * 60)
 
         print("\n" + "="*60)
 

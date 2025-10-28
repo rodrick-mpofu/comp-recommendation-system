@@ -20,7 +20,7 @@ def train_models():
     train_main()
 
 
-def make_predictions(model_name='hybrid', appraisal_index=0):
+def make_predictions(model_name='hybrid', appraisal_index=0, explain=False):
     """Make predictions using trained models."""
     from models.predict import predict_for_appraisal, load_model
     from utils.data_utils import load_appraisals_data
@@ -76,7 +76,8 @@ def make_predictions(model_name='hybrid', appraisal_index=0):
         subject,
         properties,
         n_recommendations=5,
-        verbose=True
+        verbose=True,
+        explain=explain
     )
 
 
@@ -130,8 +131,10 @@ Examples:
   python run.py clean                     # Clean the dataset
   python run.py train                     # Train all models
   python run.py predict                   # Make predictions (default: hybrid model)
+  python run.py predict --explain         # Predictions with explanations
   python run.py predict --model knn       # Use KNN model
   python run.py predict --index 5         # Predict for appraisal #5
+  python run.py predict --index 5 --explain  # With explanations
   python run.py evaluate                  # Evaluate all models
   python run.py tune                      # Tune hyperparameters (full)
   python run.py tune --quick              # Quick hyperparameter tuning
@@ -167,6 +170,11 @@ Examples:
         action='store_true',
         help='Use quick mode for hyperparameter tuning'
     )
+    parser.add_argument(
+        '--explain',
+        action='store_true',
+        help='Include explanations for predictions (use with predict command)'
+    )
 
     args = parser.parse_args()
 
@@ -181,7 +189,7 @@ Examples:
         train_models()
 
     elif args.command == 'predict':
-        make_predictions(model_name=args.model, appraisal_index=args.index)
+        make_predictions(model_name=args.model, appraisal_index=args.index, explain=args.explain)
 
     elif args.command == 'evaluate':
         evaluate_models()

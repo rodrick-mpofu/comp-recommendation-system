@@ -16,6 +16,8 @@ from .evaluation import (
     ndcg_at_k
 )
 
+from .explainer import CompExplainer
+
 __all__ = [
     'CompRecommender',
     'KNNRecommender',
@@ -26,5 +28,6 @@ __all__ = [
     'recall_at_k',
     'f1_score',
     'mean_average_precision',
-    'ndcg_at_k'
+    'ndcg_at_k',
+    'CompExplainer'
 ]

@@ -74,6 +74,10 @@ python run.py train
 python run.py predict
 python run.py predict --model knn --index 5
 
+# Make predictions WITH explanations
+python run.py predict --explain
+python run.py predict --index 5 --explain
+
 # Evaluate model performance
 python run.py evaluate
 
@@ -155,6 +159,38 @@ python run.py tune
 
 See [OPTIMIZATION_GUIDE.md](OPTIMIZATION_GUIDE.md) for detailed optimization instructions.
 
+### Explainability
+
+Get natural language explanations for why properties are recommended:
+
+```bash
+# Predictions with explanations
+python run.py predict --explain
+
+# Explanations show:
+# - Key similarities to subject property
+# - Notable differences
+# - Overall assessment
+```
+
+Example explanation:
+```
+Recommendation #1: Unit 206 - 835 Milford Drive
+Score: 0.342
+
+KEY SIMILARITIES:
+  + Very similar size (950 vs 1044 sq ft, 9.0% difference)
+  + Same property type (Townhouse)
+
+NOTABLE DIFFERENCES:
+  - Bedroom count differs by 2
+
+OVERALL ASSESSMENT:
+  Acceptable comparable - moderate similarities
+```
+
+See [EXPLAINABILITY_GUIDE.md](EXPLAINABILITY_GUIDE.md) for detailed usage.
+
 ## Current Status
 
 **Completed:**
@@ -175,10 +211,16 @@ See [OPTIMIZATION_GUIDE.md](OPTIMIZATION_GUIDE.md) for detailed optimization ins
   - Feature importance analysis
   - Grid search for optimal parameters
   - Automated model selection
+- ✅ **Milestone 2: Explainability** ⭐
+  - Natural language explanations for recommendations
+  - Similarity and difference analysis
+  - Comparative property analysis
+  - Overall assessment scores
+  - Rule-based explanation engine (LLM-ready architecture)
 
 **To Do (Milestones):**
 1. ~~**Statistical Modeling**~~ ✅ **COMPLETED**
-2. **Explainability** - Add LLM-based explanations for recommendations
+2. ~~**Explainability**~~ ✅ **COMPLETED**
 3. **Self-Improving System** - Incorporate human feedback and continuous learning
 
 ## Dataset Information
