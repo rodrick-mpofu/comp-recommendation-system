@@ -83,13 +83,24 @@ def format_recommendation(
     address = property_dict.get('address', 'Unknown')
     gla = property_dict.get('gla', 'N/A')
     bedrooms = property_dict.get('bedrooms', property_dict.get('bed_count', 'N/A'))
-    price = property_dict.get('sale_price', 'N/A')
+
+    # Handle both sale_price (comps) and close_price (properties)
+    price = property_dict.get('sale_price', property_dict.get('close_price', 'N/A'))
+    if price != 'N/A' and price not in [None, '']:
+        # Format price nicely
+        try:
+            price_num = float(str(price).replace(',', '').replace('$', ''))
+            price = f"${price_num:,.0f}"
+        except:
+            pass
+
     distance = property_dict.get('distance_to_subject', 'N/A')
 
     output = f"\n{rank}. {address}"
     output += f"\n   Score: {score:.4f}"
     output += f"\n   GLA: {gla} | Beds: {bedrooms} | Price: {price}"
-    output += f"\n   Distance: {distance}"
+    if distance != 'N/A':
+        output += f" | Distance: {distance}"
 
     return output
 

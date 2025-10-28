@@ -109,10 +109,11 @@ def extract_property_features(property_dict: Dict, subject_dict: Dict = None) ->
     features['age'] = extract_numeric(property_dict.get('age', 0))
     features['dom'] = extract_numeric(property_dict.get('dom', 0))  # Days on market
 
-    # Sale price if available
-    features['sale_price'] = extract_numeric(property_dict.get('sale_price', 0))
+    # Sale price - handle both 'sale_price' (comps) and 'close_price' (properties)
+    sale_price = property_dict.get('sale_price', property_dict.get('close_price', 0))
+    features['sale_price'] = extract_numeric(sale_price)
 
-    # Distance to subject (if available)
+    # Distance to subject (if available) - only in comps, not in properties
     features['distance_km'] = parse_distance(property_dict.get('distance_to_subject', '0'))
 
     # Categorical features (encoded as integers)
