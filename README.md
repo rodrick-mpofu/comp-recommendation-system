@@ -67,13 +67,14 @@ The project includes a main script ([run.py](run.py)) that provides a CLI interf
 # Clean and preprocess the data
 python run.py clean
 
-# Train models (not yet implemented)
+# Train recommendation models
 python run.py train
 
-# Make predictions (not yet implemented)
+# Make predictions using trained models
 python run.py predict
+python run.py predict --model knn --index 5
 
-# Evaluate model performance (not yet implemented)
+# Evaluate model performance
 python run.py evaluate
 
 # Get help
@@ -104,20 +105,53 @@ Use the Jupyter notebook for interactive data exploration:
 jupyter notebook notebooks/data_exploration.ipynb
 ```
 
+### Machine Learning Models
+
+Train and use the recommendation models:
+
+```bash
+# Train all models (KNN, Clustering, Hybrid)
+python run.py train
+
+# Make predictions with different models
+python run.py predict                    # Use hybrid model (default)
+python run.py predict --model knn        # Use K-Nearest Neighbors
+python run.py predict --model clustering # Use clustering-based model
+
+# Predict for specific appraisal
+python run.py predict --index 10
+
+# Evaluate models
+python run.py evaluate
+```
+
+#### Available Models:
+
+1. **KNN Recommender** - Finds properties most similar to the subject using K-Nearest Neighbors
+2. **Clustering Recommender** - Groups properties into clusters and recommends from the same cluster
+3. **Hybrid Recommender** - Combines KNN and clustering approaches for better results
+
 ## Current Status
 
 **Completed:**
-- Project structure setup
-- Data loading with nested JSON support
-- Data cleaning pipeline
-- Basic data exploration notebook
-- Main CLI entry point
+- ✅ Project structure setup
+- ✅ Data loading with nested JSON support
+- ✅ Data cleaning pipeline
+- ✅ Data exploration notebook
+- ✅ Main CLI entry point
+- ✅ Feature engineering pipeline
+- ✅ **Milestone 1: Statistical Modeling** ⭐
+  - K-Nearest Neighbors recommender
+  - Clustering-based recommender
+  - Hybrid recommendation system
+  - Comprehensive evaluation framework (MAP, NDCG, Precision@K, Recall@K)
+  - Model training and persistence
 
 **In Progress:**
-- Data analysis and feature engineering
+- Model performance optimization and hyperparameter tuning
 
 **To Do (Milestones):**
-1. **Statistical Modeling** - Implement scoring system using clustering, nearest neighbors, etc.
+1. ~~**Statistical Modeling**~~ ✅ **COMPLETED**
 2. **Explainability** - Add LLM-based explanations for recommendations
 3. **Self-Improving System** - Incorporate human feedback and continuous learning
 
